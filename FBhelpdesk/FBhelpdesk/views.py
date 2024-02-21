@@ -59,9 +59,7 @@ def delete_fb_page(request, fb_page_id):
         return redirect('fb_page_connections')
     return render(request, 'templates/confirm_delete_fb_page.html', {'fb_page': fb_page})
 
-# Add more views as needed for other functionalities
 
-# Example view for displaying conversations
 @login_required
 def view_conversations(request):
     user = request.user
@@ -95,7 +93,6 @@ def create_facebook_page(request):
             access_token=access_token
         )
         
-        # Optionally, you can perform additional logic or redirect the user
         return redirect('fb_page_connections')  # Redirect to the page where all FacebookPage connections are displayed
     else:
         # Render a form for the user to input the data
@@ -107,7 +104,6 @@ def manage_fb_page_connections(request):
     fb_pages = FacebookPage.objects.filter(user=user)
     return render(request, 'manage_fb_page_connections.html', {'fb_pages': fb_pages})
 
-@login_required
 @login_required
 def manage_fb_page_connections(request):
     user = request.user
@@ -132,7 +128,7 @@ def fb_login(request):
     params = {
         'client_id': settings.FACEBOOK_APP_ID,
         'redirect_uri': redirect_uri,
-        'scope': 'pages_manage_metadata',  # Example scope for managing pages
+        'scope': 'pages_manage_metadata', 
     }
     return redirect(f'{login_url}?{urlencode(params)}')
 
@@ -153,10 +149,7 @@ def fb_callback(request):
         if access_token:
             graph = facebook.GraphAPI(access_token)
             pages_data = graph.get_object('me/accounts')
-            # Process pages_data and store relevant information in the database
-            
-            # Redirect back to the fb_connections view with the user's connections displayed
+
             return redirect('fb_page_connections')
-    
-    # Redirect to the error page if there's no access token
+
     return redirect('error_page')
