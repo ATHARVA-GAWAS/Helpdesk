@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reply to Message</title>
+</head>
+<body>
+    <h2>Reply to Message</h2>
+    <p>Conversation with: {{ conversation.customer_id }}</p>
+    <form method="post">
+        {% csrf_token %}
+        <textarea name="message_content" rows="4" cols="50" placeholder="Type your message here"></textarea>
+        <br>
+        <button type="submit">Send</button>
+    </form>
+</body>
+</html>

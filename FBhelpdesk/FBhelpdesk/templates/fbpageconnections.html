@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Facebook Page Connections</title>
+</head>
+<body>
+    <h2>Facebook Page Connections</h2>
+    {% for fb_page in fb_pages %}
+        <div>
+            <p>Page ID: {{ fb_page.page_id }}</p>
+            <p>Access Token: {{ fb_page.access_token }}</p>
+            {% if fb_page.connected %}
+                <p>You are already connected to Facebook!</p>
+            {% else %}
+                <p>You are not connected to Facebook. Connect now:</p>
+                <form method="post" action="{% url 'facebook_connect' %}">
+                    {% csrf_token %}
+                    <button type="submit">Connect to Facebook</button>
+                </form>
+            {% endif %}
+            <form method="post" action="{% url 'delete_fb_page' fb_page.id %}">
+                {% csrf_token %}
+                <button type="submit">Delete</button>
+            </form>
+        </div>
+    {% endfor %}
+</body>
+</html>

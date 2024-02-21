@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Facebook Page</title>
+</head>
+<body>
+    <h2>Create Facebook Page</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="page_id">Page ID:</label><br>
+        <input type="text" id="page_id" name="page_id"><br>
+        <label for="access_token">Access Token:</label><br>
+        <input type="text" id="access_token" name="access_token"><br>
+        <button type="submit">Create Page</button>
+    </form>
+</body>
+</html>

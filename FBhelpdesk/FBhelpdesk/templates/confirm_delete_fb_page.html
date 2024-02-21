@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirm Delete Facebook Page</title>
+</head>
+<body>
+    <h2>Confirm Delete Facebook Page</h2>
+    <p>Are you sure you want to delete the following Facebook Page connection?</p>
+    <p>Page ID: {{ fb_page.page_id }}</p>
+    <p>Access Token: {{ fb_page.access_token }}</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Yes, Delete</button>
+        <a href="{% url 'fb_page_connections' %}">Cancel</a>
+    </form>
+</body>
+</html>
